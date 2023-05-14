@@ -14,8 +14,8 @@ namespace WpfLesson2
         {
             base.OnStartup(e);
 
-            //BasicListBoxWindow win = new();
-            CustomWindow win = new();
+            BasicListBoxWindow win = new();
+            //CustomWindow win = new();
             win.ShowDialog();
         }
     }

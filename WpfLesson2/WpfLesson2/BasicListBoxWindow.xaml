@@ -10,6 +10,7 @@
         <Grid.RowDefinitions>
             <RowDefinition Height="*"/>
             <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
         </Grid.RowDefinitions>
         <ListBox 
             Grid.Row="0"
@@ -21,5 +22,8 @@
         <TextBlock 
             Grid.Row="1" 
             Text="{Binding CurrentItem.Name}"/>
+
+        <Button Grid.Row="2" Command="{Binding ButtonClickCommand}"
+                Content="Button"/>
     </Grid>
 </Window>

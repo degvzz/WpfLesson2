@@ -5,30 +5,19 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
 using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Shapes;
+using System.Windows.Media.Animation;
 
 namespace WpfLesson2
 {
-    /// <summary>
-    /// BasicListBoxWindow.xaml에 대한 상호 작용 논리
-    /// </summary>
-    public partial class BasicListBoxWindow : Window, INotifyPropertyChanged
+    public class BasicListBoxVIewModel : INotifyPropertyChanged
     {
-        public BasicListBoxWindow()
+        public BasicListBoxVIewModel() 
         {
-            InitializeComponent();
+            Items = GetItems();
+            CurrentItem = Items[0];
 
-            //Items = GetItems();
-            //CurrentItem = Items[0];
-            //DataContext = this;
-
-            DataContext = new BasicListBoxVIewModel();
+            ButtonClickCommand = new RelayCommand<object>(ButtonClick);
         }
 
         // ListBox -> ItemsSource
@@ -54,6 +43,12 @@ namespace WpfLesson2
         protected virtual void OnPropertyChanged(string propertyName)
         {
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
+        }
+
+        public ICommand ButtonClickCommand { get; init; }
+        private void ButtonClick(object obj)
+        {
+            MessageBox.Show(CurrentItem.Name);
         }
 
         private List<CompanyModel> GetItems()
